@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface IDataUser {
+  readonly _id: number;
   ID_NB: number;
   Name: string;
   Phone_Number: string;

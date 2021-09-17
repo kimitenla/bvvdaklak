@@ -50,11 +50,15 @@ const Home = () => {
           data: value,
           cb: (res: any) => {
             // cho nay chung ta kieu set cai tham so co gia tri boolean == true thi chay khuc trong if (ngoai ra ta co the truyen bat cu thu gi vao func cb)
-            if (res) {
-              console.log(res, "res");
+            if (res.isSuccess) {
               onCloseModal();
               setTitleModal("");
               message.success("Thêm thành công");
+            }
+            if (res.error) {
+              onCloseModal();
+
+              message.error(res.error.error);
             }
           },
         }
@@ -67,10 +71,15 @@ const Home = () => {
         data: values,
         id: itemSeleted._id,
         cb: (res: any) => {
-          if (res) {
+          if (res.isSuccess) {
             onCloseModal();
             setTitleModal("");
             message.success("Cập nhật thành công");
+          }
+          if (res.error) {
+            onCloseModal();
+
+            message.error(res.error.error);
           }
         },
       })
@@ -89,7 +98,6 @@ const Home = () => {
     );
   };
   //END MEETUP
-  console.log(itemSeleted, "itemSeleted");
   const role = localStorage.getItem("role");
   if (role === "admin" || role === "manager") {
     return (

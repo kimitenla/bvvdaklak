@@ -8,11 +8,12 @@ interface IDataTemp {
   Address: string;
   MonitoringRoom: string;
   UserInvitation: string;
-  Userlead: string;
+  Userlead: [];
   User: [];
   Date: Date;
   description: string;
   id: string;
+  _id: string;
   Time: Date;
   title: string;
 }
@@ -61,12 +62,29 @@ const TableComponent: FC<IProps> = ({ data, onOpenUpdate, onDeleteHandle }) => {
         title: "Lãnh đạo cuộc họp",
         dataIndex: "Userlead",
         key: "Userlead",
+        render: (record: any) => {
+          return (
+            <ul>
+              {record.map((ele: any) => (
+                <li key={ele._id}>{ele.Name}</li>
+              ))}
+            </ul>
+          );
+        },
       },
       {
         title: "Người tham gia",
         dataIndex: "User",
         key: "User",
-        render: (User: []) => [User].map((item) => item),
+        render: (record: any) => {
+          return (
+            <ul>
+              {record.map((ele: any) => (
+                <li key={ele._id}>{ele.Name}</li>
+              ))}
+            </ul>
+          );
+        },
       },
       {
         title: "Phòng giám sát",
@@ -143,12 +161,29 @@ const TableComponent: FC<IProps> = ({ data, onOpenUpdate, onDeleteHandle }) => {
         title: "Lãnh đạo cuộc họp",
         dataIndex: "Userlead",
         key: "Userlead",
+        render: (record: any) => {
+          return (
+            <ul>
+              {record.map((ele: any) => (
+                <li key={ele._id}>{ele.Name}</li>
+              ))}
+            </ul>
+          );
+        },
       },
       {
         title: "Người tham gia",
         dataIndex: "User",
         key: "User",
-        render: (User: []) => [User].map((item) => item + "  "),
+        render: (record: any) => {
+          return (
+            <ul>
+              {record.map((ele: any) => (
+                <li key={ele._id}>{ele.Name}</li>
+              ))}
+            </ul>
+          );
+        },
       },
       {
         title: "Phòng giám sát",

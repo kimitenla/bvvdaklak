@@ -4,7 +4,7 @@ interface IDataTemp {
   Address: string;
   MonitoringRoom: string;
   UserInvitation: string;
-  Userlead: string;
+  Userlead: [];
   User: [];
   Date: Date;
   description: string;

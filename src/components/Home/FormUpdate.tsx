@@ -3,6 +3,8 @@ import { Form, Input, DatePicker, TimePicker, Select } from "antd";
 import moment from "moment";
 import { useAppDispatch, useAppSelector } from "../../utils/hook";
 import { UserActions } from "../../redux/reducers/User/user";
+import { RoomActions } from "../../redux/reducers/Room/room";
+import { KeyObject } from "crypto";
 interface IProps {
   data: any;
 }
@@ -11,9 +13,12 @@ const FormCreate: FC<IProps> = ({ data }) => {
   const dispatch = useAppDispatch();
   React.useEffect(() => {
     dispatch(UserActions.GET_LIST_REQUREST());
+    dispatch(RoomActions.GET_LIST_ROOM_REQUREST());
   }, []);
   const { dataUser } = useAppSelector((state) => state.user);
+  const data2 = useAppSelector((state) => state.room.data);
   const { Option } = Select;
+
   return (
     <React.Fragment>
       <Form.Item
@@ -38,26 +43,46 @@ const FormCreate: FC<IProps> = ({ data }) => {
       <Form.Item label="Giờ họp" name="Time" initialValue={moment(data.Time)}>
         <TimePicker style={{ width: "100%" }} format="HH:mm" />
       </Form.Item>
-      <Form.Item
-        label="Địa chỉ"
-        name="Address"
-        rules={[{ message: "Địa chỉ phòng họp" }]}
-        initialValue={data.Address}
-      >
-        <Input />
+      <Form.Item label="Phòng họp" name="Address" initialValue={data.Address}>
+        <Select
+          allowClear
+          style={{ width: "100%" }}
+          placeholder="Địa chỉ phòng họp"
+        >
+          {data2.map((obj) => {
+            return (
+              <Option key={obj.id_room} value={obj.room_name}>
+                {obj.room_name}
+              </Option>
+            );
+          })}
+        </Select>
       </Form.Item>
+
       <Form.Item
         label="Người lãnh đạo"
         name="Userlead"
-        rules={[{ message: "Người lãnh đạo" }]}
-        initialValue={data.Userlead}
+        initialValue={data.Userlead.map((ele: any) => ele._id)}
       >
-        <Input />
+        <Select
+          mode="multiple"
+          allowClear
+          style={{ width: "100%" }}
+          placeholder="Người lãnh đạo"
+        >
+          {dataUser.map((obj) => {
+            return (
+              <Option key={obj.ID_NB} value={obj._id}>
+                {obj.Name}
+              </Option>
+            );
+          })}
+        </Select>
       </Form.Item>
       <Form.Item
         label="Nhân viên tham gia"
         name="User"
-        initialValue={data.User}
+        initialValue={data.User.map((ele: any) => ele._id)}
       >
         <Select
           mode="multiple"
@@ -67,7 +92,7 @@ const FormCreate: FC<IProps> = ({ data }) => {
         >
           {dataUser.map((obj) => {
             return (
-              <Option key={obj.ID_NB} value={obj.Name}>
+              <Option key={obj.ID_NB} value={obj._id}>
                 {obj.Name}
               </Option>
             );

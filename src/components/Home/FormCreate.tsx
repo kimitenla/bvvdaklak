@@ -7,8 +7,11 @@ import {
   DatePicker,
   Select,
 } from "antd";
+import { Upload, message, Button } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 import { useAppDispatch, useAppSelector } from "../../utils/hook";
 import { UserActions } from "../../redux/reducers/User/user";
+import { RoomActions } from "../../redux/reducers/Room/room";
 
 const FormCreate: FC = () => {
   // function onChange(dateString) {
@@ -17,10 +20,12 @@ const FormCreate: FC = () => {
   const dispatch = useAppDispatch();
   React.useEffect(() => {
     dispatch(UserActions.GET_LIST_REQUREST());
+    dispatch(RoomActions.GET_LIST_ROOM_REQUREST());
   }, []);
   const dateFormat = "DD/MM/YYYY";
   const { dataUser } = useAppSelector((state) => state.user);
   const { Option } = Select;
+  const { data } = useAppSelector((state) => state.room);
 
   return (
     <React.Fragment>
@@ -44,20 +49,36 @@ const FormCreate: FC = () => {
       <Form.Item label="Giờ họp" name="Time" rules={[{ required: true }]}>
         <TimePicker style={{ width: "100%" }} format="HH:mm" />
       </Form.Item>
-      <Form.Item
-        label="Địa chỉ"
-        name="Address"
-        rules={[{ required: true, message: "Địa chỉ phòng họp" }]}
-      >
-        <Input />
+      <Form.Item label="Phòng họp" name="Address">
+        <Select
+          allowClear
+          style={{ width: "100%" }}
+          placeholder="Địa chỉ phòng họp"
+        >
+          {data.map((obj) => {
+            return (
+              <Option key={obj.id_room} value={obj.room_name}>
+                {obj.room_name}
+              </Option>
+            );
+          })}
+        </Select>
       </Form.Item>
-
-      <Form.Item
-        label="Người lãnh đạo"
-        name="Userlead"
-        rules={[{ message: "Người lãnh đạo" }]}
-      >
-        <Input />
+      <Form.Item label="Người lãnh đạo" name="Userlead">
+        <Select
+          mode="multiple"
+          allowClear
+          style={{ width: "100%" }}
+          placeholder="Người lãnh đạo"
+        >
+          {dataUser.map((obj) => {
+            return (
+              <Option key={obj.ID_NB} value={obj._id}>
+                {obj.Name}
+              </Option>
+            );
+          })}
+        </Select>
       </Form.Item>
       <Form.Item label="Nhân viên tham gia" name="User">
         <Select
@@ -68,14 +89,13 @@ const FormCreate: FC = () => {
         >
           {dataUser.map((obj) => {
             return (
-              <Option key={obj.ID_NB} value={obj.Name}>
+              <Option key={obj.ID_NB} value={obj._id}>
                 {obj.Name}
               </Option>
             );
           })}
         </Select>
       </Form.Item>
-
       <Form.Item
         label="Phòng giám sát"
         name="MonitoringRoom"

@@ -1,12 +1,5 @@
 import restful from "../utils/service";
 
-const GetProduct: any = async () => {
-  try {
-    return await restful.GET("meetups");
-  } catch (e) {
-    return e;
-  }
-};
 const GetAllProduct: any = async () => {
   try {
     return await restful.GET("meetups/getallMeetups");
@@ -14,20 +7,35 @@ const GetAllProduct: any = async () => {
     return e;
   }
 };
-
+const GetProduct: any = async () => {
+  try {
+    return await restful.GET(`meetups/fromtoday`);
+  } catch (e) {
+    return e;
+  }
+};
+const GetMyMeetups: any = async () => {
+  const token = localStorage.getItem("token");
+  try {
+    return await restful.GET(`meetups/${token}`);
+  } catch (e) {
+    return e;
+  }
+};
 const CreateProduct: any = async (data: any) => {
   try {
     return await restful.POST("meetups", data);
-  } catch (e) {
-    return e;
+  } catch (e: any) {
+    throw e.response;
   }
 };
 
 const UpdateProduct: any = async (id: any, data: any) => {
   try {
     return await restful.PUT(`meetups/${id}`, data);
-  } catch (e) {
-    return e;
+  } catch (e: any) {
+    console.log("e.response", e);
+    throw e.response;
   }
 };
 

@@ -120,10 +120,24 @@ const CalendarPage = () => {
           >
             <FormUpdate data={itemSeleted} />
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-              <Button type="primary" htmlType="submit" onClick={onUpdate}>
+              <Button
+                type="primary"
+                htmlType="submit"
+                onClick={onUpdate}
+                style={{ margin: 10 }}
+              >
                 Cập Nhật
               </Button>
-              <Button type="primary" htmlType="submit" onClick={onDelete}>
+              <Button
+                type="primary"
+                htmlType="submit"
+                onClick={onDelete}
+                style={{
+                  margin: 10,
+                  backgroundColor: "red",
+                  borderColor: "transparent",
+                }}
+              >
                 Xoá
               </Button>
             </Form.Item>

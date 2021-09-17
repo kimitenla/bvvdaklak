@@ -8,8 +8,11 @@ import RouteCenter from "./Router/route";
 import { store } from "./redux/store";
 import moment from "moment";
 import "moment/locale/vi";
+import { runService } from "./utils/service";
+
 moment.locale("vi");
 
+runService();
 config();
 loadProgressBar();
 

@@ -36,14 +36,13 @@ function* handleGetallList(action: IAction) {
 }
 
 function* handleCreate(action: IAction) {
+  const { data, cb } = action.payload;
   // trong handle nay tham so nhan vao la 1 action (type & payload), cai payload nay la cai dc truyen vao luc díspatch âấ
   try {
     // api thi goi ở đây
     // vi du co func call api
     // const res = yield call(funcAPI,tham số);
     // day la truong hop call api trong saga, con neu call o component thi truyen vao luc dispatch thoy, roi trong saga no nhâậ o phan action
-
-    const { data, cb } = action.payload;
 
     const res: AxiosResponse = yield call(CreateProduct, data);
     if (res) {
@@ -53,16 +52,16 @@ function* handleCreate(action: IAction) {
       // check if cb exist & type is func
       if (cb && typeof cb === "function") yield cb({ isSuccess: true });
     }
-  } catch (e) {
+  } catch (e: any) {
     yield put(HomeActions.CREATE_TODO_FAILED());
+    yield cb({ isFailed: true, error: e.data });
   }
 }
 
 function* handleUpdate(action: IAction) {
   // trong handle nay tham so nhan vao la 1 action (type & payload), cai payload nay la cai dc truyen vao luc díspatch âấ
+  const { data, id, cb } = action.payload;
   try {
-    const { data, id, cb } = action.payload;
-
     const res: AxiosResponse = yield call(UpdateProduct, id, data);
 
     if (res) {
@@ -73,8 +72,10 @@ function* handleUpdate(action: IAction) {
       // check if cb exist & type is func
       if (cb && typeof cb === "function") yield cb({ isSuccess: true });
     }
-  } catch (e) {
+  } catch (e: any) {
     yield put(HomeActions.UPDATE_TODO_FAILED());
+    console.log(e, "ádjnaskjdaskjdaskjdnjkas");
+    yield cb({ isFailed: true, error: e.data });
   }
 }
 function* handleGettoday(action: IAction) {

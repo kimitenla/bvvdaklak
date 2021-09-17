@@ -13,6 +13,8 @@ function* handleLogin(action: IAction) {
     if (res) {
       localStorage.setItem("role", res.data.role);
       localStorage.setItem("token", res.data.token);
+      localStorage.setItem("name", res.data.name);
+
       yield put(LoginActions.LOGIN_SUCCESS(action.payload.data));
       if (cb && typeof cb === "function") yield cb({ isSuccess: true });
     }

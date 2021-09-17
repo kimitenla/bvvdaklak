@@ -24,14 +24,13 @@ function* handleCreate(action: IAction) {
     const res: AxiosResponse = yield call(CreateUser, data);
     console.log(res, data, "resresres");
     if (res) {
-      console.log(" thành công");
       yield put(UserActions.CREATE_TODO_SUCCESS(action.payload.data));
       yield put(UserActions.GET_LIST_REQUREST());
       if (cb && typeof cb === "function") yield cb({ isSuccess: true });
     }
-  } catch (e) {
+  } catch (e: any) {
     yield put(UserActions.CREATE_TODO_FAILED());
-    console.log(e, "đây là e");
+
     if (cb && typeof cb === "function")
       yield cb({ isFailed: true, error: e.data });
   }

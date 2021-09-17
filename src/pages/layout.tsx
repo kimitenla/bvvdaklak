@@ -8,6 +8,20 @@ const { Header, Content } = Layout;
 const Layout1 = (props: any) => {
   let history = useHistory();
   const role = localStorage.getItem("role");
+  const name = localStorage.getItem("name");
+  var today = new Date();
+
+  var t = today.getHours();
+  var a = "";
+  if (t > 4 && t < 11) {
+    a = "buổi sáng";
+  } else if (t >= 11 && t < 13) {
+    a = "buổi trưa";
+  } else if (t >= 13 && t < 18) {
+    a = "buổi chiều";
+  } else {
+    a = "buổi tối";
+  }
   if (role === "admin") {
     return (
       <Layout>
@@ -40,10 +54,17 @@ const Layout1 = (props: any) => {
             </Menu.Item>
           </Menu>
         </Header>
+
         <Content
           className="site-layout"
           style={{ padding: "0 50px", marginTop: 64, height: "100%" }}
         >
+          <div>
+            <h3 style={{ float: "right" }}>
+              Chào {a} {name}({role})
+            </h3>
+          </div>
+
           <div
             className="site-layout-background"
             style={{ padding: 24, minHeight: 380 }}
@@ -86,6 +107,11 @@ const Layout1 = (props: any) => {
           className="site-layout"
           style={{ padding: "0 50px", marginTop: 64, height: "100%" }}
         >
+          <div>
+            <h3 style={{ float: "right" }}>
+              Chào {a} {name}({role})
+            </h3>
+          </div>
           <div
             className="site-layout-background"
             style={{ padding: 24, minHeight: 380 }}

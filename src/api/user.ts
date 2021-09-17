@@ -12,7 +12,7 @@ const CreateUser: any = async (data: any) => {
   try {
     console.log(data, "data");
     return await restful.POST("user", data);
-  } catch (e) {
+  } catch (e: any) {
     throw e.response;
   }
 };

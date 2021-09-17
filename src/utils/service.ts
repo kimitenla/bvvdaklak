@@ -1,5 +1,26 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import { notification } from "antd";
 /** file nay dung de setup service */
+
+const runService = () => {
+  const token = localStorage.getItem("token");
+  axios.defaults.headers.common["Authorization"] = token;
+  axios.interceptors.response.use(
+    function (response) {
+      return response;
+    },
+    function (e) {
+      // nghien cuu sau
+      // console.log("e", e.data);
+      // if (e?.error)
+      // notification.error({
+      //   // message: e.message || "Something wrong. Please try again!",
+      //   message: "Something wrong. Please try again!",
+      // });
+      return Promise.reject(e);
+    }
+  );
+};
 
 const service = async (config: AxiosRequestConfig): Promise<AxiosResponse> => {
   try {
@@ -24,5 +45,5 @@ const restful = {
 
   DELETE: (path: string) => service({ method: "DELETE", url: path }),
 };
-
+export { runService };
 export default restful;

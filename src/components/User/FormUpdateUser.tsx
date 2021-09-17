@@ -14,7 +14,6 @@ const FormCreate: FC<IProps> = ({ data }) => {
   }, []);
 
   const data_room = useAppSelector((state) => state.room.data);
-  console.log(data_room, "data_room");
   return (
     <React.Fragment>
       <Form.Item
