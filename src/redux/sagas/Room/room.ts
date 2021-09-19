@@ -29,7 +29,7 @@ function* handleCreate(action: IAction) {
       yield put(RoomActions.GET_LIST_ROOM_REQUREST());
       if (cb && typeof cb === "function") yield cb({ isSuccess: true });
     }
-  } catch (e) {
+  } catch (e: any) {
     yield put(RoomActions.CREATE_ROOM_TODO_FAILED());
     if (cb && typeof cb === "function")
       yield cb({ isFailed: true, error: e.data });

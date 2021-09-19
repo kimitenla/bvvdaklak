@@ -4,6 +4,8 @@ import { notification } from "antd";
 
 const runService = () => {
   const token = localStorage.getItem("token");
+  console.log("token", token);
+
   axios.defaults.headers.common["Authorization"] = token;
   axios.interceptors.response.use(
     function (response) {
@@ -26,7 +28,8 @@ const service = async (config: AxiosRequestConfig): Promise<AxiosResponse> => {
   try {
     return await axios({
       ...config,
-      baseURL: "http://localhost:5000/",
+      // baseURL: "http://localhost:5000/",
+      baseURL: "https://bvvdaklak.herokuapp.com/",
       //  baseURL: "https://5fb4e4cde473ab0016a171b8.mockapi.io",
     });
   } catch (e) {

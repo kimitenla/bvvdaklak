@@ -11,9 +11,10 @@ const GetRoom: any = async () => {
 const CreateRoom: any = async (data: any) => {
   try {
     return await restful.POST("room", data);
-  } catch (e) {
-    console.log(e.response, "đã xảy ra lỗi ở CreateRoom");
-    throw e.response;
+  } catch (e: any) {
+    // console.log(e.response, "đã xảy ra lỗi ở CreateRoom");
+    if (e?.response) return e.response;
+    throw e;
   }
 };
 const UpdateRoom: any = async (id: any, data: any) => {
