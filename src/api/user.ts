@@ -26,7 +26,6 @@ const UpdateUser: any = async (id: any, data: any) => {
 };
 
 const DeleteUser: any = async (id: any) => {
-  console.log(id, "id");
   try {
     return await restful.DELETE(`user/${id}`);
   } catch (e) {
@@ -35,10 +34,10 @@ const DeleteUser: any = async (id: any) => {
 };
 
 const Login: any = async (data: any) => {
+  console.log(data, "dadata login");
   try {
     return await restful.POST("user/login", data);
   } catch (e) {
-    console.log("đây là cacth e của API ", e);
     throw e;
   }
 };
