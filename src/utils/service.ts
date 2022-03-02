@@ -12,13 +12,11 @@ const runService = () => {
       return response;
     },
     function (e) {
-      // nghien cuu sau
-      // console.log("e", e.data);
-      // if (e?.error)
-      // notification.error({
-      //   // message: e.message || "Something wrong. Please try again!",
-      //   message: "Something wrong. Please try again!",
-      // });
+      console.log("e", e.data);
+      if (e?.error)
+        notification.error({
+          message: e.data.message || "Something wrong. Please try again!",
+        });
       return Promise.reject(e);
     }
   );
