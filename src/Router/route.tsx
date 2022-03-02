@@ -4,7 +4,7 @@ import {
   Switch,
   Route,
   Redirect,
-  useLocation,
+ 
 } from "react-router-dom";
 import Login from "../components/Login/Login";
 import Home from "../pages/home/index";
@@ -12,6 +12,7 @@ import User from "../pages/home/user";
 import CalendarPage from "../pages/home/calendar";
 import MeetupOnce from "../pages/home/meetupOnce";
 import Room from "../pages/home/room";
+import ScoreRoom from "../pages/home/ScoreRoom";
 export default function RouteCenter() {
   return (
     <Router>
@@ -37,6 +38,9 @@ export default function RouteCenter() {
             </PrivateRoute>
             <PrivateRoute path="/room" exact>
               <Room />
+            </PrivateRoute>
+            <PrivateRoute path="/ScoreRoom" exact>
+              <ScoreRoom />
             </PrivateRoute>
           </Switch>
         </PrivateRoute>

@@ -46,7 +46,7 @@ const FormCreate: FC = () => {
       <Form.Item label="Ngày họp" name="Date" rules={[{ required: true }]}>
         <DatePicker style={{ width: "100%" }} format={dateFormat} />
       </Form.Item>
-      <Form.Item label="Giờ họp" name="Time" rules={[{ required: true }]}>
+      <Form.Item label="Giờ họp" name="Time">
         <TimePicker style={{ width: "100%" }} format="HH:mm" />
       </Form.Item>
       <Form.Item label="Phòng họp" name="Address">

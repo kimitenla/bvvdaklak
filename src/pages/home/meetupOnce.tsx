@@ -80,14 +80,7 @@ const MeetupOnce = () => {
         }
       )
     );
-    dispatch(
-      HomeActions.REQUREST_TODAYLIST(
-        // cai dong o duoi goi la payload
-        {
-          data: moment(today),
-        }
-      )
-    );
+    
   };
   const handleUpdate = (values: any) => {
     dispatch(
@@ -103,14 +96,7 @@ const MeetupOnce = () => {
         },
       })
     );
-    dispatch(
-      HomeActions.REQUREST_TODAYLIST(
-        // cai dong o duoi goi la payload
-        {
-          data: moment(today),
-        }
-      )
-    );
+
   };
   const DeleteHandle = (item: any) => {
     dispatch(
@@ -123,14 +109,7 @@ const MeetupOnce = () => {
         },
       })
     );
-    dispatch(
-      HomeActions.REQUREST_TODAYLIST(
-        // cai dong o duoi goi la payload
-        {
-          data: moment(today),
-        }
-      )
-    );
+   
   };
   //END MEETUP
   const role = localStorage.getItem("role");

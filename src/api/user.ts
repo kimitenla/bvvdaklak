@@ -10,7 +10,6 @@ const GetUser: any = async () => {
 
 const CreateUser: any = async (data: any) => {
   try {
-    console.log(data, "data");
     return await restful.POST("user", data);
   } catch (e: any) {
     throw e.response;
@@ -34,7 +33,6 @@ const DeleteUser: any = async (id: any) => {
 };
 
 const Login: any = async (data: any) => {
-  console.log(data, "dadata login");
   try {
     return await restful.POST("user/login", data);
   } catch (e) {

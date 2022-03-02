@@ -20,6 +20,9 @@
 .text1 {
   text-overflow: ellipsis;
 }
+.title {
+  color: red;
+}
 .text2 {
   padding: 5px;
 }

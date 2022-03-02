@@ -22,10 +22,10 @@ const Layout1 = (props: any) => {
   } else {
     a = "buổi tối";
   }
-  if (role === "admin") {
+  if (role === "admin" || role === "manager") {
     return (
       <Layout>
-        <Header style={{ position: "fixed", zIndex: 1, width: "100%" }}>
+        <Header style={{ position: "fixed", zIndex: 5, width: "100%" }}>
           <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
             <Menu.Item key="1">
               <Link to="/">Trang chủ</Link>
@@ -42,6 +42,9 @@ const Layout1 = (props: any) => {
             <Menu.Item key="6">
               <Link to="/room">Phòng</Link>
             </Menu.Item>
+            {/* <Menu.Item key="7">
+              <Link to="/ScoreRoom"> Chấm điểm/Xếp loại</Link>
+            </Menu.Item> */}
             <Menu.Item key="4">
               <span
                 onClick={() => {
@@ -52,6 +55,15 @@ const Layout1 = (props: any) => {
                 Đăng xuất
               </span>
             </Menu.Item>
+            <Menu.Item>
+              {
+                <div>
+                  <h3 style={{ float: "right", color: "red" }}>
+                    Chào {a} {name}({role})
+                  </h3>
+                </div>
+              }
+            </Menu.Item>
           </Menu>
         </Header>
 
@@ -59,12 +71,6 @@ const Layout1 = (props: any) => {
           className="site-layout"
           style={{ padding: "0 50px", marginTop: 64, height: "100%" }}
         >
-          <div>
-            <h3 style={{ float: "right" }}>
-              Chào {a} {name}({role})
-            </h3>
-          </div>
-
           <div
             className="site-layout-background"
             style={{ padding: 24, minHeight: 380 }}
@@ -77,7 +83,7 @@ const Layout1 = (props: any) => {
   } else {
     return (
       <Layout>
-        <Header style={{ position: "fixed", zIndex: 1, width: "100%" }}>
+        <Header style={{ position: "fixed", zIndex: 5, width: "100%" }}>
           <div className="logo" />
           <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
             <Menu.Item key="1">

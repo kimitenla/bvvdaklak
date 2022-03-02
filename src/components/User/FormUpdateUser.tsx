@@ -71,8 +71,8 @@ const FormCreate: FC<IProps> = ({ data }) => {
       >
         <Select placeholder="Cấp bậc">
           <Option value="manager">Quản lý</Option>
-          <Option value="staff">Nhân viên</Option>
-          <Option value="part-time">Hợp đồng</Option>
+          <Option value="employee">Nhân viên</Option>
+          <Option value="contract">Hợp đồng</Option>
         </Select>
       </Form.Item>
       <Form.Item

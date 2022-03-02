@@ -28,8 +28,8 @@ const service = async (config: AxiosRequestConfig): Promise<AxiosResponse> => {
   try {
     return await axios({
       ...config,
-      baseURL: "http://localhost:5000/",
-      // baseURL: "https://bvvdaklak.herokuapp.com/",
+      //baseURL: "http://localhost:5000/",
+      baseURL: "https://bvvdaklak.herokuapp.com/",
       //  baseURL: "https://5fb4e4cde473ab0016a171b8.mockapi.io",
     });
   } catch (e) {

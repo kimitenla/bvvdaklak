@@ -48,6 +48,8 @@ function* handleCreate(action: IAction) {
     if (res) {
       yield put(HomeActions.CREATE_TODO_SUCCESS(action.payload.data));
       yield put(HomeActions.GET_LIST_REQUREST());
+      yield put(HomeActions.GET_ALL_LIST_REQUREST());
+
       // o ben kia chung ta truyen them 1 func callback de tra data tu saga ve component
       // check if cb exist & type is func
       if (cb && typeof cb === "function") yield cb({ isSuccess: true });
@@ -74,7 +76,6 @@ function* handleUpdate(action: IAction) {
     }
   } catch (e: any) {
     yield put(HomeActions.UPDATE_TODO_FAILED());
-    console.log(e, "ádjnaskjdaskjdaskjdnjkas");
     yield cb({ isFailed: true, error: e.data });
   }
 }
@@ -87,7 +88,7 @@ function* handleGettoday(action: IAction) {
 
     if (res) {
       yield put(HomeActions.REQUREST_TODAYLIST_SUCCESS(res.data));
-
+    
       // o ben kia chung ta truyen them 1 func callback de tra data tu saga ve component
       // check if cb exist & type is func
       if (cb && typeof cb === "function") yield cb({ isSuccess: true });

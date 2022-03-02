@@ -157,33 +157,20 @@ const CalendarPage = () => {
         >
           <div className="text1">
             <p>
-              <h1>{itemSeleted.title}</h1>
+              <h4 className="title">{itemSeleted.title}</h4>
             </p>
+            <p>Nội Dung: {itemSeleted.description}</p>
+            <p>Địa Chỉ: {itemSeleted.Address}</p>
             <p>
-              <h3>Nội Dung:</h3>
-              {itemSeleted.description}
-            </p>
-            <p>
-              <h3>Địa Chỉ:</h3> {itemSeleted.Address}
-            </p>
-            <p>
-              <h3>Thời Gian:</h3>
+              Thời Gian:
               {moment(itemSeleted.Time).format("LT")}
               {", ngày "}
               {moment(itemSeleted.Date).format("LL")}
             </p>
-            <p>
-              <h3>Người Lãnh Đạo:</h3> {itemSeleted.Userlead}
-            </p>
-            <p>
-              <h3>Người Tham Dự:</h3> {itemSeleted.User}
-            </p>
-            <p>
-              <h3>Phòng Giám Sát:</h3> {itemSeleted.MonitoringRoom}
-            </p>
-            <p>
-              <h3> Khách Mời:</h3> {itemSeleted.UserInvitation}
-            </p>
+            <p>Người Lãnh Đạo: {itemSeleted.Userlead}</p>
+            <p>Người Tham Dự: {itemSeleted.User}</p>
+            <p>Phòng Giám Sát: {itemSeleted.MonitoringRoom}</p>
+            <p>Khách Mời:{itemSeleted.UserInvitation}</p>
           </div>
         </Modal>
       </Layout1>

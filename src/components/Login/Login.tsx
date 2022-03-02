@@ -25,7 +25,10 @@ function Login() {
           if (res.isSuccess == true) {
             history.push("/");
             message.success("ĐĂNG NHẬP THÀNH CÔNG");
-          } else {
+          }else if(res.error) {
+            message.error(res.error.error);
+          }
+           else {
             message.error("ĐĂNG NHẬP THẤT BẠI");
           }
         },

@@ -16,12 +16,13 @@ function* handleLogin(action: IAction) {
       localStorage.setItem("name", res.data.name);
 
       yield put(LoginActions.LOGIN_SUCCESS(action.payload.data));
+
       if (cb && typeof cb === "function") yield cb({ isSuccess: true });
     }
-  } catch (e) {
+  } catch (e: any) {
     yield put(LoginActions.LOGIN_FAILED());
-
-    if (cb && typeof cb === "function") yield cb({ isFailed: true });
+    if (cb && typeof cb === "function")
+      yield cb({ isFailed: true, error: e.response.data });
   }
 }
 

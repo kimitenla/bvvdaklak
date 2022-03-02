@@ -21,7 +21,7 @@ const ModalComponent: FC<IProps> = ({
 }) => {
   const onFinish = (values: any) => {
     if (values.Phone_Number == undefined) {
-      message.error("Chỉ được nhập số");
+      message.error("SĐT chỉ được nhập số, vui lòng nhập lại");
     } else {
       // console.log(values);
       onSubmit(values);

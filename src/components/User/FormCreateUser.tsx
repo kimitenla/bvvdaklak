@@ -20,7 +20,11 @@ const FormCreate: FC = () => {
       >
         <Input />
       </Form.Item>
-      <Form.Item label="Số điện thoại" name="Phone_Number">
+      <Form.Item
+        label="Số điện thoại"
+        name="Phone_Number"
+        rules={[{ required: true, message: "Số điện thoại" }]}
+      >
         <InputNumber style={{ width: "100%" }} />
       </Form.Item>
       <Form.Item
@@ -54,7 +58,11 @@ const FormCreate: FC = () => {
           })}
         </Select>
       </Form.Item>
-      <Form.Item label="Cấp bậc" name="Role" rules={[{ message: "Cấp bậc!" }]}>
+      <Form.Item
+        label="Cấp bậc"
+        name="Role"
+        rules={[{ required: true, message: "Nhập quyền tài khoản" }]}
+      >
         <Select placeholder="Cấp bậc">
           <Option value="manager">Quản lý</Option>
           <Option value="employee">Nhân viên</Option>

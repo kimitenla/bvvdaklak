@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { Table, Space } from "antd";
 import moment from "moment";
 import "moment/locale/vi";
+import "./Table.css";
 import user from "../../redux/sagas/User/user";
 moment.locale("vi");
 interface IDataTemp {
@@ -26,14 +27,17 @@ interface IProps {
 
 const TableComponent: FC<IProps> = ({ data, onOpenUpdate, onDeleteHandle }) => {
   const role = localStorage.getItem("role");
-  if (role === "admin") {
+  if (role === "admin" || role === "manager") {
     const columns = [
       {
         title: "Ngày họp",
         dataIndex: "Date",
         key: "Date",
-        render: (Date: Date) =>
-          moment(Date).format("dddd,") + moment(Date).format(" LL"),
+        render: (Date: Date) => (
+          <p style={{ color: "red" }}>
+            {moment(Date).format("dddd,") + moment(Date).format(" LL")}
+          </p>
+        ),
       },
       {
         title: "Thời gian",
@@ -143,7 +147,9 @@ const TableComponent: FC<IProps> = ({ data, onOpenUpdate, onDeleteHandle }) => {
         dataIndex: "Date",
         key: "Date",
         render: (Date: Date) => (
-          <h3>{moment(Date).format("dddd,") + moment(Date).format(" LL")} </h3>
+          <p style={{ color: "red" }}>
+            {moment(Date).format("dddd,") + moment(Date).format(" LL")}{" "}
+          </p>
         ),
       },
       {
