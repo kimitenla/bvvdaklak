@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Layout1 from "../layout";
+import Layout1 from "../layout/layout";
 import { message, Button } from "antd";
 import Table from "../../components/Room/Table";
 import { useAppDispatch, useAppSelector } from "../../utils/hook";

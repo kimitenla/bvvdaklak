@@ -8,7 +8,7 @@ import Table from "../../components/User/TableUser";
 import ModalUser from "../../components/User/ModalUser";
 import { UserActions } from "../../redux/reducers/User/user";
 
-import Layout1 from "../layout";
+import Layout1 from "../layout/layout";
 const User = () => {
   const dispatch = useAppDispatch();
   React.useEffect(() => {
@@ -98,7 +98,7 @@ const User = () => {
   };
   //END USER
   const role = localStorage.getItem("role");
-  if (role === "admin") {
+  if (role === "admin" || role === "manager") {
     return (
       <Layout1>
         <Button type="primary" size="large" onClick={onOpenCreateUser}>

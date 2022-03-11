@@ -53,6 +53,17 @@ export const UserSlice = createSlice({
     GET_LIST_FAILED: (state) => {
       state.loadingGet = false;
     },
+    GET_LIST_ON_ROOM: (state, action) => {
+      state.loadingGet = false;
+    },
+    GET_LIST_ON_ROOM_SUCCESS: (state, action) => {
+      const { data } = action.payload;
+      state.loadingGet = false;
+      state.dataUser = data;
+    },
+    GET_LIST_ON_ROOM_FAILED: (state) => {
+      state.loadingGet = false;
+    },
 
     CREATE_TODO_REQUREST: (state, action) => {
       state.loadingCreate = true;

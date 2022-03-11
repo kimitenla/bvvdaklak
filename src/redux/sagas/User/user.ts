@@ -4,12 +4,17 @@ import { handleCreateSaga } from "../../../utils/helper";
 import { ISaga, IAction } from "../../../interfaces";
 import { UserActions } from "../../reducers/User/user";
 
-import { GetUser, CreateUser, UpdateUser, DeleteUser } from "../../../api/user";
+import {
+  GetUser,
+  CreateUser,
+  UpdateUser,
+  DeleteUser,
+  GetOnRoom,
+} from "../../../api/user";
 
 function* handleGetist(action: IAction) {
   try {
     const res: AxiosResponse = yield call(GetUser);
-
     if (res.data)
       // co data tu api roi thi ta save vao store
       yield put(UserActions.GET_LIST_SUCCESS(res.data));
@@ -17,12 +22,20 @@ function* handleGetist(action: IAction) {
     yield put(UserActions.GET_LIST_FAILED());
   }
 }
+function* handlegetListOnRoom(action: IAction) {
+  try {
+    const { data } = action.payload;
+    const res: AxiosResponse = yield call(GetOnRoom, data);
+    if (res.data) yield put(UserActions.GET_LIST_ON_ROOM_SUCCESS(data));
+  } catch (e) {
+    yield put(UserActions.GET_LIST_ON_ROOM_FAILED());
+  }
+}
 
 function* handleCreate(action: IAction) {
   const { data, cb } = action.payload;
   try {
     const res: AxiosResponse = yield call(CreateUser, data);
-    console.log(res, data, "resresres");
     if (res) {
       yield put(UserActions.CREATE_TODO_SUCCESS(action.payload.data));
       yield put(UserActions.GET_LIST_REQUREST());
@@ -82,6 +95,10 @@ const getListSaga: ISaga = {
   on: UserActions.GET_LIST_REQUREST,
   handle: handleGetist,
 };
+const getListOnRoomSaga: ISaga = {
+  on: UserActions.GET_LIST_ON_ROOM,
+  handle: handlegetListOnRoom,
+};
 
 const createSaga: ISaga = {
   on: UserActions.CREATE_TODO_REQUREST,
@@ -101,4 +118,5 @@ export default handleCreateSaga([
   createSaga,
   updateSaga,
   deleteSaga,
+  getListOnRoomSaga,
 ]);

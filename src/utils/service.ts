@@ -4,7 +4,6 @@ import { notification } from "antd";
 
 const runService = () => {
   const token = localStorage.getItem("token");
-  console.log("token", token);
 
   axios.defaults.headers.common["Authorization"] = token;
   axios.interceptors.response.use(
@@ -12,11 +11,12 @@ const runService = () => {
       return response;
     },
     function (e) {
-      console.log("e", e.data);
-      if (e?.error)
+      if (e)
         notification.error({
-          message: e.data.message || "Something wrong. Please try again!",
+          message:
+            e.response.data.message || "Something wrong. Please try again!",
         });
+
       return Promise.reject(e);
     }
   );
@@ -26,12 +26,11 @@ const service = async (config: AxiosRequestConfig): Promise<AxiosResponse> => {
   try {
     return await axios({
       ...config,
-      //baseURL: "http://localhost:5000/",
-      baseURL: "https://bvvdaklak.herokuapp.com/",
+      baseURL: "http://localhost:5000/",
+      //baseURL: "https://bvvdaklak.herokuapp.com/",
       //  baseURL: "https://5fb4e4cde473ab0016a171b8.mockapi.io",
     });
   } catch (e) {
-    console.log("đây là file catch bên service");
     throw e;
   }
 };

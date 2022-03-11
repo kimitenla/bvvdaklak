@@ -3,7 +3,6 @@ import { Table, Space } from "antd";
 import moment from "moment";
 import "moment/locale/vi";
 import "./Table.css";
-import user from "../../redux/sagas/User/user";
 moment.locale("vi");
 interface IDataTemp {
   Address: string;

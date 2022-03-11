@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface IData {
+  _id: number;
   id_room: number;
   room_name: string;
   room_size: number;

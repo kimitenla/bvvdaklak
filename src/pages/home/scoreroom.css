@@ -1,3 +1,8 @@
 .title {
   text-align: center;
 }
+.table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}

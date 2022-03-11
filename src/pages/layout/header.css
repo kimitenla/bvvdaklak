@@ -1,0 +1,48 @@
+.left {
+  justify-content: center;
+  align-items: center;
+  margin-left: 5%;
+  position: relative;
+}
+.right-header {
+  align-items: right;
+}
+.row {
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+}
+.menu {
+  font-size: large !important;
+  font-weight: 500;
+  line-height: 64px;
+  color: #eb4034 !important;
+}
+.bvvtn {
+  margin-top: 15px;
+  color: #0d05fa;
+  font-weight: 700;
+  font-size: x-large;
+  height: 10%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.text {
+  font-size: medium;
+  font-weight: 500;
+  font-family: "Segoe UI", Tahoma;
+  padding: 10px;
+}
+.hello {
+  margin-top: 15px;
+  font-weight: 400;
+  color: #eb4034;
+  font-size: medium;
+  height: 10%;
+  float: right;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.img {
+  background-image: url(../../logobv.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+}

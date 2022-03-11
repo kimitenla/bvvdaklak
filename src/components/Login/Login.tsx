@@ -2,7 +2,7 @@ import { useState } from "react";
 import React from "react";
 import { message } from "antd";
 import { useHistory } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../utils/hook";
+import { useAppDispatch } from "../../utils/hook";
 import "./index.css";
 import { LoginActions } from "../../redux/reducers/User/login";
 function Login() {
@@ -22,22 +22,17 @@ function Login() {
         data: details,
 
         cb: (res: any) => {
-          if (res.isSuccess == true) {
+          if (res.isSuccess === true) {
             history.push("/");
             message.success("ĐĂNG NHẬP THÀNH CÔNG");
-          }else if(res.error) {
+          } else if (res.error) {
             message.error(res.error.error);
-          }
-           else {
+          } else {
             message.error("ĐĂNG NHẬP THẤT BẠI");
           }
         },
       })
     );
-  };
-
-  const onFinishFailed = (errorInfo: any) => {
-    message.warning("Bạn đang nhập thiếu thông tin");
   };
 
   return (
@@ -77,10 +72,10 @@ function Login() {
                 />
               </div>
               <div className="form-check">
-                <label className="form-check-label">
+                {/* <label className="form-check-label">
                   <input type="checkbox" className="form-check-input" />
                   <small>Remember Me</small>
-                </label>
+                </label> */}
                 <button
                   type="submit"
                   value="Submit"

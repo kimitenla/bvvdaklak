@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Calendar, Badge, Modal, Form, Button, message } from "antd";
 import "./calendar.css";
-import Layout1 from "../layout";
+import Layout1 from "../layout/layout";
 import { useAppDispatch, useAppSelector } from "../../utils/hook";
 import { HomeActions } from "../../redux/reducers/home";
 import moment from "moment";
@@ -101,6 +101,8 @@ const CalendarPage = () => {
     isDelete = true;
   };
   const role = localStorage.getItem("role");
+  console.log("itemSeleted");
+
   if (role === "admin") {
     return (
       <Layout1>
@@ -156,21 +158,38 @@ const CalendarPage = () => {
           footer={null}
         >
           <div className="text1">
-            <p>
-              <h4 className="title">{itemSeleted.title}</h4>
-            </p>
-            <p>Nội Dung: {itemSeleted.description}</p>
-            <p>Địa Chỉ: {itemSeleted.Address}</p>
-            <p>
-              Thời Gian:
-              {moment(itemSeleted.Time).format("LT")}
-              {", ngày "}
-              {moment(itemSeleted.Date).format("LL")}
-            </p>
-            <p>Người Lãnh Đạo: {itemSeleted.Userlead}</p>
-            <p>Người Tham Dự: {itemSeleted.User}</p>
-            <p>Phòng Giám Sát: {itemSeleted.MonitoringRoom}</p>
-            <p>Khách Mời:{itemSeleted.UserInvitation}</p>
+            <span>
+              <div className="title">
+                <h4 className="title-h4">{itemSeleted.title}</h4>
+              </div>
+              <div className="div-space">
+                Nội Dung: {itemSeleted.description}
+              </div>
+              <div className="div-space">Phòng họp: {itemSeleted.Address}</div>
+              <div className="div-space">
+                Người tham gia:
+                {itemSeleted.User?.map((ele: any) => {
+                  <li key={ele._id}>{ele.Name}</li>;
+                })}
+              </div>
+              <div className="div-space">
+                Lãnh đạo cuộc họp:
+                {itemSeleted.Userlead?.map((ele: any) => {
+                  <li key={ele._id}>{ele.Name}</li>;
+                })}
+              </div>
+              <div className="div-space">
+                Thời Gian: {moment(itemSeleted.Time).format("LT")}, ngày {""}
+                {moment(itemSeleted.Date).format("LL")}
+              </div>
+
+              <div className="div-space">
+                Phòng Giám Sát: {itemSeleted.MonitoringRoom}
+              </div>
+              <div className="div-space">
+                Khách Mời:{itemSeleted.UserInvitation}
+              </div>
+            </span>
           </div>
         </Modal>
       </Layout1>

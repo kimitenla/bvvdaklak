@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
- 
-} from "react-router-dom";
+import { Switch, Route, Redirect, HashRouter } from "react-router-dom";
 import Login from "../components/Login/Login";
 import Home from "../pages/home/index";
 import User from "../pages/home/user";
@@ -15,12 +9,11 @@ import Room from "../pages/home/room";
 import ScoreRoom from "../pages/home/ScoreRoom";
 export default function RouteCenter() {
   return (
-    <Router>
+    <HashRouter>
       <Switch>
         <Route path="/login" exact>
           <Login />
         </Route>
-
         <PrivateRoute path="/">
           <Switch>
             <PrivateRoute path="/user">
@@ -45,7 +38,7 @@ export default function RouteCenter() {
           </Switch>
         </PrivateRoute>
       </Switch>
-    </Router>
+    </HashRouter>
   );
 }
 

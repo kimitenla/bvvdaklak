@@ -7,6 +7,14 @@ const GetUser: any = async () => {
     return e;
   }
 };
+const GetOnRoom: any = async (data: any) => {
+  console.log(data, "data");
+  try {
+    //  return await restful.GET("user");
+  } catch (e) {
+    return e;
+  }
+};
 
 const CreateUser: any = async (data: any) => {
   try {
@@ -40,4 +48,4 @@ const Login: any = async (data: any) => {
   }
 };
 
-export { GetUser, CreateUser, UpdateUser, DeleteUser, Login };
+export { GetUser, CreateUser, UpdateUser, DeleteUser, Login, GetOnRoom };

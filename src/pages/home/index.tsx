@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import { message, Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { useAppDispatch, useAppSelector } from "../../utils/hook";
-
 import Table from "../../components/Home/Table";
 import Modal from "../../components/Home/Modal";
 import { HomeActions } from "../../redux/reducers/home";
-import Layout1 from "../layout";
-
+import Layout1 from "../layout/layout";
 const Home = () => {
   const [visible, setVisible] = useState(false);
   const [titleModal, setTitleModal] = useState("");
@@ -99,26 +97,29 @@ const Home = () => {
   };
   //END MEETUP
   const role = localStorage.getItem("role");
+
   if (role === "admin" || role === "manager") {
     return (
-      <Layout1>
-        <Button type="primary" size="large" onClick={onOpenCreate}>
-          Tạo cuộc họp <PlusOutlined />
-        </Button>
+      <>
+        <Layout1>
+          <Button type="primary" size="large" onClick={onOpenCreate}>
+            Tạo cuộc họp <PlusOutlined />
+          </Button>
 
-        <Table
-          data={data}
-          onOpenUpdate={onOpenUpdate}
-          onDeleteHandle={DeleteHandle}
-        />
-        <Modal
-          title={titleModal}
-          visible={visible}
-          onHide={onCloseModal}
-          onSubmit={isCreate ? handleSubmit : handleUpdate}
-          detailData={itemSeleted}
-        />
-      </Layout1>
+          <Table
+            data={data}
+            onOpenUpdate={onOpenUpdate}
+            onDeleteHandle={DeleteHandle}
+          />
+          <Modal
+            title={titleModal}
+            visible={visible}
+            onHide={onCloseModal}
+            onSubmit={isCreate ? handleSubmit : handleUpdate}
+            detailData={itemSeleted}
+          />
+        </Layout1>
+      </>
     );
   } else {
     return (

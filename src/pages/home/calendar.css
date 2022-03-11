@@ -20,9 +20,20 @@
 .text1 {
   text-overflow: ellipsis;
 }
-.title {
-  color: red;
+.title-h4 {
+  color: #ff4d2e;
 }
+.title {
+  padding-top: 10px;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.div-space {
+  line-height: 2.2;
+}
+
 .text2 {
   padding: 5px;
 }

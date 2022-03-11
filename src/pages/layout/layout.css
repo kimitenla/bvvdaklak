@@ -1,0 +1,12 @@
+.row-col {
+  align-items: center;
+  justify-content: center;
+}
+.menu {
+  align-items: center;
+  justify-content: center;
+}
+.layout {
+  width: 100% !important;
+  height: 100% !important;
+}

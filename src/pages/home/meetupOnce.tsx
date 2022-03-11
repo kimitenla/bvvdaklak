@@ -1,4 +1,4 @@
-import Layout1 from "../layout";
+import Layout1 from "../layout/layout";
 import moment from "moment";
 import { DatePicker, message, Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
@@ -80,7 +80,6 @@ const MeetupOnce = () => {
         }
       )
     );
-    
   };
   const handleUpdate = (values: any) => {
     dispatch(
@@ -96,7 +95,6 @@ const MeetupOnce = () => {
         },
       })
     );
-
   };
   const DeleteHandle = (item: any) => {
     dispatch(
@@ -109,7 +107,6 @@ const MeetupOnce = () => {
         },
       })
     );
-   
   };
   //END MEETUP
   const role = localStorage.getItem("role");
