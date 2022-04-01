@@ -57,11 +57,14 @@ export const UserSlice = createSlice({
       state.loadingGet = false;
     },
     GET_LIST_ON_ROOM_SUCCESS: (state, action) => {
-      const { data } = action.payload;
+      console.log("con gà");
+      console.log(action.payload, "action.payload");
+      const data = action.payload;
       state.loadingGet = false;
       state.dataUser = data;
     },
     GET_LIST_ON_ROOM_FAILED: (state) => {
+      console.log("con gà thất bại");
       state.loadingGet = false;
     },
 

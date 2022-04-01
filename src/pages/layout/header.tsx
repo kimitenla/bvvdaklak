@@ -4,6 +4,7 @@ import { Menu } from "antd";
 
 import "./header.css";
 import { Link, useHistory } from "react-router-dom";
+import SubMenu from "antd/lib/menu/SubMenu";
 type Props = {};
 
 const Header = (props: Props) => {
@@ -63,12 +64,21 @@ const Header = (props: Props) => {
           <Menu.Item key="5">
             <Link to="/meetupOnce">Lịch ngày</Link>
           </Menu.Item>
-          <Menu.Item key="6">
+          <Menu.Item key="6" title="Chấm điểm/Xếp loại">
             <Link to="/room">Phòng</Link>
           </Menu.Item>
-          <Menu.Item key="7">
-            <Link to="/ScoreRoom"> Chấm điểm/Xếp loại</Link>
-          </Menu.Item>
+          <SubMenu key="7" title="Chấm điểm/Xếp loại">
+            <Menu.Item key="8">
+              <Link to="/ScoreRoom"> Tạo phiếu chấm điểm</Link>
+            </Menu.Item>
+            {/* <Menu.Item key="9">
+              <Link to="/ViewScoreRoom">Xem tổng hợp</Link>
+            </Menu.Item> */}
+            <Menu.Item key="10">
+              <Link to="/ScoreFind">Xem Điểm Tổng Kết Theo Tháng</Link>
+            </Menu.Item>
+          </SubMenu>
+
           <Menu.Item key="4">
             <span
               onClick={() => {

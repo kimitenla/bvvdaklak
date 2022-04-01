@@ -1,7 +1,6 @@
 import React from "react";
 import { Row, Col } from "antd";
 import "./footer.css";
-import { PhoneOutlined, FastForwardOutlined } from "@ant-design/icons";
 type Props = {};
 
 const Footer = (props: Props) => {

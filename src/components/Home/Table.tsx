@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { FC } from "react";
 import { Table, Space } from "antd";
 import moment from "moment";
@@ -66,6 +67,8 @@ const TableComponent: FC<IProps> = ({ data, onOpenUpdate, onDeleteHandle }) => {
         dataIndex: "Userlead",
         key: "Userlead",
         render: (record: any) => {
+          console.log(record, "record");
+
           return (
             <ul>
               {record.map((ele: any) => (

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+/* eslint-disable array-callback-return */
+import React, { useState, useEffect } from "react";
 import { Calendar, Badge, Modal, Form, Button, message } from "antd";
 import "./calendar.css";
-import Layout1 from "../layout/layout";
 import { useAppDispatch, useAppSelector } from "../../utils/hook";
-import { HomeActions } from "../../redux/reducers/home";
+import { HomeActions } from "../../redux/reducers/Meetups/home";
 import moment from "moment";
 import FormUpdate from "../../components/Home/FormUpdate";
 import "moment/locale/vi";
@@ -23,9 +23,9 @@ const CalendarPage = () => {
   let isUpdate = false;
   let isDelete = false;
   const { data_all } = useAppSelector((state) => state.home);
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(HomeActions.GET_ALL_LIST_REQUREST());
-  }, []);
+  }, [dispatch]);
   function dateCellRender(value: any) {
     const listData = data_all.filter(
       (c) =>
@@ -105,7 +105,7 @@ const CalendarPage = () => {
 
   if (role === "admin") {
     return (
-      <Layout1>
+      <>
         <Calendar dateCellRender={dateCellRender} />
         <Modal
           destroyOnClose={true}
@@ -145,11 +145,11 @@ const CalendarPage = () => {
             </Form.Item>
           </Form>
         </Modal>
-      </Layout1>
+      </>
     );
   } else {
     return (
-      <Layout1>
+      <>
         <Calendar dateCellRender={dateCellRender} />
         <Modal
           title={"THÔNG TIN CUỘC HỌP"}
@@ -192,7 +192,7 @@ const CalendarPage = () => {
             </span>
           </div>
         </Modal>
-      </Layout1>
+      </>
     );
   }
 };

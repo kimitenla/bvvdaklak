@@ -11,7 +11,7 @@ const FormCreate: FC<IProps> = ({ data }) => {
   const dispatch = useAppDispatch();
   React.useEffect(() => {
     dispatch(RoomActions.GET_LIST_ROOM_REQUREST());
-  }, []);
+  }, [dispatch]);
 
   const data_room = useAppSelector((state) => state.room.data);
   return (
@@ -70,9 +70,9 @@ const FormCreate: FC<IProps> = ({ data }) => {
         initialValue={data.Role}
       >
         <Select placeholder="Cấp bậc">
-          <Option value="manager">Quản lý</Option>
-          <Option value="employee">Nhân viên</Option>
-          <Option value="contract">Hợp đồng</Option>
+          <Option value="manager">Lãnh đạo</Option>
+          <Option value="employee">Trưởng phòng</Option>
+          <Option value="contract">Nhân viên</Option>
         </Select>
       </Form.Item>
       <Form.Item

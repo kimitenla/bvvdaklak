@@ -1,12 +1,17 @@
 import React from "react";
 import { Switch, Route, Redirect, HashRouter } from "react-router-dom";
-import Login from "../components/Login/Login";
-import Home from "../pages/home/index";
-import User from "../pages/home/user";
-import CalendarPage from "../pages/home/calendar";
-import MeetupOnce from "../pages/home/meetupOnce";
-import Room from "../pages/home/room";
-import ScoreRoom from "../pages/home/ScoreRoom";
+import {
+  Home,
+  CalendarPage,
+  MeetupOnce,
+  Room,
+  ScoreRoom,
+  User,
+  ViewScoreRoom,
+  Login,
+  Layout1,
+  ScoreFind,
+} from "../pages";
 export default function RouteCenter() {
   return (
     <HashRouter>
@@ -14,29 +19,36 @@ export default function RouteCenter() {
         <Route path="/login" exact>
           <Login />
         </Route>
-        <PrivateRoute path="/">
-          <Switch>
-            <PrivateRoute path="/user">
-              <User />
-            </PrivateRoute>
-
-            <PrivateRoute path="/" exact>
-              <Home />
-            </PrivateRoute>
-            <PrivateRoute path="/calendar" exact>
-              <CalendarPage />
-            </PrivateRoute>
-            <PrivateRoute path="/meetupOnce" exact>
-              <MeetupOnce />
-            </PrivateRoute>
-            <PrivateRoute path="/room" exact>
-              <Room />
-            </PrivateRoute>
-            <PrivateRoute path="/ScoreRoom" exact>
-              <ScoreRoom />
-            </PrivateRoute>
-          </Switch>
-        </PrivateRoute>
+        <Layout1>
+          <PrivateRoute path="/">
+            <Switch>
+              <PrivateRoute path="/user">
+                <User />
+              </PrivateRoute>
+              <PrivateRoute path="/" exact>
+                <Home />
+              </PrivateRoute>
+              <PrivateRoute path="/calendar" exact>
+                <CalendarPage />
+              </PrivateRoute>
+              <PrivateRoute path="/meetupOnce" exact>
+                <MeetupOnce />
+              </PrivateRoute>
+              <PrivateRoute path="/room" exact>
+                <Room />
+              </PrivateRoute>
+              <PrivateRoute path="/ScoreRoom" exact>
+                <ScoreRoom />
+              </PrivateRoute>
+              <PrivateRoute path="/ViewScoreRoom" exact>
+                <ViewScoreRoom />
+              </PrivateRoute>
+              <PrivateRoute path="/ScoreFind" exact>
+                <ScoreFind />
+              </PrivateRoute>
+            </Switch>
+          </PrivateRoute>
+        </Layout1>
       </Switch>
     </HashRouter>
   );

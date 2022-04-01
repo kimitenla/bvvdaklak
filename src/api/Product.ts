@@ -14,14 +14,7 @@ const GetProduct: any = async () => {
     return e;
   }
 };
-const GetMyMeetups: any = async () => {
-  const token = localStorage.getItem("token");
-  try {
-    return await restful.GET(`meetups/${token}`);
-  } catch (e) {
-    return e;
-  }
-};
+
 const CreateProduct: any = async (data: any) => {
   try {
     return await restful.POST("meetups", data);

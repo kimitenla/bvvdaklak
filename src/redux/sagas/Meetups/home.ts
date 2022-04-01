@@ -1,8 +1,8 @@
 import { put, call } from "redux-saga/effects";
 import { AxiosResponse } from "axios";
-import { handleCreateSaga } from "../../utils/helper";
-import { ISaga, IAction } from "../../interfaces";
-import { HomeActions } from "../reducers/home";
+import { handleCreateSaga } from "../../../utils/helper";
+import { ISaga, IAction } from "../../../interfaces";
+import { HomeActions } from "../../reducers/Meetups/home";
 
 import {
   GetProduct,
@@ -11,7 +11,7 @@ import {
   DeleteProduct,
   GetAllProduct,
   getListToday,
-} from "../../api/Product";
+} from "../../../api/Product";
 
 function* handleGetist(action: IAction) {
   try {
@@ -88,7 +88,7 @@ function* handleGettoday(action: IAction) {
 
     if (res) {
       yield put(HomeActions.REQUREST_TODAYLIST_SUCCESS(res.data));
-    
+
       // o ben kia chung ta truyen them 1 func callback de tra data tu saga ve component
       // check if cb exist & type is func
       if (cb && typeof cb === "function") yield cb({ isSuccess: true });

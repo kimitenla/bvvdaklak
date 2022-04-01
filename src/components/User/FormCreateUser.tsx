@@ -8,7 +8,7 @@ const FormCreate: FC = () => {
   const dispatch = useAppDispatch();
   React.useEffect(() => {
     dispatch(RoomActions.GET_LIST_ROOM_REQUREST());
-  }, []);
+  }, [dispatch]);
 
   const { data } = useAppSelector((state) => state.room);
   return (
@@ -64,9 +64,9 @@ const FormCreate: FC = () => {
         rules={[{ required: true, message: "Nhập quyền tài khoản" }]}
       >
         <Select placeholder="Cấp bậc">
-          <Option value="manager">Quản lý</Option>
-          <Option value="employee">Nhân viên</Option>
-          <Option value="contract">Hợp đồng</Option>
+          <Option value="manager">Lãnh đạo</Option>
+          <Option value="employee">Trưởng phòng</Option>
+          <Option value="contract">Nhân viên</Option>
         </Select>
       </Form.Item>
       <Form.Item

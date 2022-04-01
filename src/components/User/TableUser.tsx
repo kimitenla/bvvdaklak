@@ -1,5 +1,6 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { FC } from "react";
-import { Table, Tag, Space } from "antd";
+import { Table, Space } from "antd";
 
 interface IDataUser {
   ID_NB: number;

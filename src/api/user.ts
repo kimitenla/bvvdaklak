@@ -7,10 +7,10 @@ const GetUser: any = async () => {
     return e;
   }
 };
-const GetOnRoom: any = async (data: any) => {
-  console.log(data, "data");
+const GetOnRoom: any = async (room: any) => {
+  console.log(room, "data đƯợc gửi đi");
   try {
-    //  return await restful.GET("user");
+    return await restful.GET(`user/get${room}`);
   } catch (e) {
     return e;
   }

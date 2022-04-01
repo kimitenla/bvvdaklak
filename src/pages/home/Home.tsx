@@ -4,8 +4,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import { useAppDispatch, useAppSelector } from "../../utils/hook";
 import Table from "../../components/Home/Table";
 import Modal from "../../components/Home/Modal";
-import { HomeActions } from "../../redux/reducers/home";
-import Layout1 from "../layout/layout";
+import { HomeActions } from "../../redux/reducers/Meetups/home";
 const Home = () => {
   const [visible, setVisible] = useState(false);
   const [titleModal, setTitleModal] = useState("");
@@ -18,7 +17,7 @@ const Home = () => {
 
   React.useEffect(() => {
     dispatch(HomeActions.GET_LIST_REQUREST());
-  }, []);
+  }, [dispatch]);
   //BEGIN MEETUP
   const onOpenCreate = () => {
     setIsCreate(true);
@@ -101,7 +100,7 @@ const Home = () => {
   if (role === "admin" || role === "manager") {
     return (
       <>
-        <Layout1>
+        <>
           <Button type="primary" size="large" onClick={onOpenCreate}>
             Tạo cuộc họp <PlusOutlined />
           </Button>
@@ -118,12 +117,12 @@ const Home = () => {
             onSubmit={isCreate ? handleSubmit : handleUpdate}
             detailData={itemSeleted}
           />
-        </Layout1>
+        </>
       </>
     );
   } else {
     return (
-      <Layout1>
+      <>
         <Table
           data={data}
           onOpenUpdate={onOpenUpdate}
@@ -136,7 +135,7 @@ const Home = () => {
           onSubmit={isCreate ? handleSubmit : handleUpdate}
           detailData={itemSeleted}
         />
-      </Layout1>
+      </>
     );
   }
 };

@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React, { FC } from "react";
 import { Modal, Button, Form } from "antd";
 import { message } from "antd";

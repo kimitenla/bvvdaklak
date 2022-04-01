@@ -1,14 +1,6 @@
 import React, { FC } from "react";
-import {
-  Form,
-  Input,
-  AutoComplete,
-  TimePicker,
-  DatePicker,
-  Select,
-} from "antd";
-import { Upload, message, Button } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
+import { Form, Input, TimePicker, DatePicker, Select } from "antd";
+
 import { useAppDispatch, useAppSelector } from "../../utils/hook";
 import { UserActions } from "../../redux/reducers/User/user";
 import { RoomActions } from "../../redux/reducers/Room/room";
@@ -21,7 +13,7 @@ const FormCreate: FC = () => {
   React.useEffect(() => {
     dispatch(UserActions.GET_LIST_REQUREST());
     dispatch(RoomActions.GET_LIST_ROOM_REQUREST());
-  }, []);
+  }, [dispatch]);
   const dateFormat = "DD/MM/YYYY";
   const { dataUser } = useAppSelector((state) => state.user);
   const { Option } = Select;

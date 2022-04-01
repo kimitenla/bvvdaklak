@@ -1,5 +1,5 @@
+/* eslint-disable eqeqeq */
 import React, { useState } from "react";
-import Layout1 from "../layout/layout";
 import { message, Button } from "antd";
 import Table from "../../components/Room/Table";
 import { useAppDispatch, useAppSelector } from "../../utils/hook";
@@ -13,7 +13,7 @@ const Room = () => {
   const dispatch = useAppDispatch();
   React.useEffect(() => {
     dispatch(RoomActions.GET_LIST_ROOM_REQUREST());
-  }, []);
+  }, [dispatch]);
   // BEGIN ROOM
   const [titleModalRoom, setTitleModalRoom] = useState("");
   const [visibleRoom, setVisibleRoom] = useState(false);
@@ -97,7 +97,7 @@ const Room = () => {
   };
   //END ROOM
   return (
-    <Layout1>
+    <>
       <Button type="primary" size="large" onClick={onOpenCreateRoom}>
         Thêm phòng <PlusOutlined />
       </Button>
@@ -113,7 +113,7 @@ const Room = () => {
         onSubmit={isCreateRoom ? handleSubmit : handleUpdate}
         detailData={itemSeletedRoom}
       />
-    </Layout1>
+    </>
   );
 };
 

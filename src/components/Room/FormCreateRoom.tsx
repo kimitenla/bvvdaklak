@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import { Form, Input, InputNumber } from "antd";
-import { message } from "antd";
 
 const FormCreate: FC = () => {
   return (

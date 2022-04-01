@@ -4,7 +4,6 @@ import moment from "moment";
 import { useAppDispatch, useAppSelector } from "../../utils/hook";
 import { UserActions } from "../../redux/reducers/User/user";
 import { RoomActions } from "../../redux/reducers/Room/room";
-import { KeyObject } from "crypto";
 interface IProps {
   data: any;
 }
@@ -14,7 +13,7 @@ const FormCreate: FC<IProps> = ({ data }) => {
   React.useEffect(() => {
     dispatch(UserActions.GET_LIST_REQUREST());
     dispatch(RoomActions.GET_LIST_ROOM_REQUREST());
-  }, []);
+  }, [dispatch]);
   const { dataUser } = useAppSelector((state) => state.user);
   const data2 = useAppSelector((state) => state.room.data);
   const { Option } = Select;

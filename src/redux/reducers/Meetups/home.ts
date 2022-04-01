@@ -99,7 +99,7 @@ export const counterSlice = createSlice({
       state.loadingGet = true;
     },
     REQUREST_TODAYLIST_SUCCESS: (state, action) => {
-      const { data, limit, page } = action.payload;
+      const { data } = action.payload;
 
       state.loadingGet = false;
       state.data2 = data;

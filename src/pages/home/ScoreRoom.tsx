@@ -8,12 +8,13 @@ import {
   InputNumber,
   DatePicker,
   Select,
+  message,
 } from "antd";
-import Layout1 from "../layout/layout";
 import "./scoreroom.css";
 import { useAppDispatch, useAppSelector } from "../../utils/hook";
 import { UserActions } from "../../redux/reducers/User/user";
 import { RoomActions } from "../../redux/reducers/Room/room";
+import { ScoreActions } from "../../redux/reducers/Score/score";
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -25,33 +26,48 @@ export default function ScoreRoom() {
   }, [dispatch]);
   const { dataUser } = useAppSelector((state) => state.user);
   const { data } = useAppSelector((state) => state.room);
-
   // end
   let today = new Date();
   let month = today.getMonth();
+
   // ON SUBMIT
   const SelectRoom = (values: any) => {
     dispatch(UserActions.GET_LIST_ON_ROOM(values));
-
-    // eslint-disable-next-line no-lone-blocks
-    // {
-    //   dataUser.forEach((item) => {
-    //     if (item.user_room === values) {
-    //       return item.Name;
-    //     }
-    //   });
-    // }
   };
   const onFinish = (values: any) => {
-    console.log("Success:", values);
+    console.log("values:", values);
+    dispatch(
+      ScoreActions.CREATE_SCORE_REQUREST({
+        data: values,
+        cb: (res: any) => {
+          if (res.isSuccess) {
+            message.success("Thêm thành công");
+          } else if (res.error) {
+            message.error(res.error.error);
+          }
+        },
+      })
+    );
   };
 
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
+    message.error(errorInfo);
   };
   // END
+  const role = localStorage.getItem("role");
+  let dld =
+    role === "admin" ? (
+      <Form.Item
+        label="Điểm lãnh đạo chấm"
+        name="UserLeadScore"
+        rules={[{ type: "number", min: 0, max: 100 }]}
+      >
+        <InputNumber />
+      </Form.Item>
+    ) : null;
   return (
-    <Layout1>
+    <>
       <Row>
         <Col span={24}>
           <Title level={3} className="title">
@@ -68,7 +84,7 @@ export default function ScoreRoom() {
           >
             <Form.Item
               label="Phòng"
-              name="userroom"
+              name="room"
               rules={[
                 { required: true, message: "Please input your userroom!" },
               ]}
@@ -88,6 +104,7 @@ export default function ScoreRoom() {
                 })}
               </Select>
             </Form.Item>
+
             <Form.Item
               label="Người chấm điểm"
               name="marker"
@@ -100,7 +117,7 @@ export default function ScoreRoom() {
               >
                 {dataUser.map((item) => {
                   return (
-                    <Option key={item._id} value={item.Name}>
+                    <Option key={item._id} value={item._id}>
                       {item.Name}
                     </Option>
                   );
@@ -122,23 +139,26 @@ export default function ScoreRoom() {
               >
                 {dataUser.map((item) => {
                   return (
-                    <Option key={item._id} value={item.Name}>
+                    <Option key={item._id} value={item._id}>
                       {item.Name}
                     </Option>
                   );
                 })}
               </Select>
             </Form.Item>
+
             <Form.Item
-              label="Tổng điểm"
+              label="Điểm chấm"
               name="allscore"
               rules={[{ type: "number", min: 0, max: 100 }]}
             >
               <InputNumber />
             </Form.Item>
+            {dld}
             <Form.Item label="Ngày chấm" name="dayscore">
               <DatePicker />
             </Form.Item>
+
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
               <Button type="primary" htmlType="submit">
                 Xác nhận
@@ -146,72 +166,7 @@ export default function ScoreRoom() {
             </Form.Item>
           </Form>
         </Col>
-        {/* <Col span={24}>
-          <table className="table" style={{ width: "100%" }}>
-            <tr>
-              <th>TT</th>
-              <th>Nội Dung</th>
-              <th>Điểm tối đa</th>
-              <th colSpan={3}>Điểm chấm</th>
-            </tr>
-
-            <tr>
-              <th colSpan={2}>Tổng cộng</th>
-              <th>100</th>
-
-              <th>Cá nhân chấm</th>
-              <th>Phòng chấm</th>
-              <th>Lãnh đạo chấm</th>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>
-                <tr>Chính trị tư tưởng</tr>
-                <tr>a</tr>
-                <tr>b</tr>
-                <tr>c</tr>
-                <tr>d</tr>
-              </td>
-              <td>
-                <tr>12</tr>
-                <tr>3</tr>
-                <tr>3</tr>
-                <tr>3</tr>
-              </td>
-              <td>
-                <tr>1a+1b</tr>
-                <tr>
-                  <input type="text" id="1a" name="1a" />
-                </tr>
-                <tr>
-                  {" "}
-                  <input type="text" id="1b" name="1b" />
-                </tr>
-                <tr>
-                  {" "}
-                  <input type="text" id="1c" name="1c" />
-                </tr>
-                <tr>
-                  {" "}
-                  <input type="text" id="1d" name="1d" />
-                </tr>
-              </td>
-              <td>
-                <tr>điểm phòng chấm</tr>
-                <tr>điểm phòng chấm</tr>
-                <tr>điểm phòng chấm</tr>
-                <tr>điểm phòng chấm</tr>
-              </td>
-              <td>
-                <tr>điểm lãnh đạo chấm</tr>
-                <tr>điểm lãnh đạo chấm</tr>
-                <tr>điểm lãnh đạo chấm</tr>
-                <tr>điểm lãnh đạo chấm</tr>
-              </td>
-            </tr>
-          </table>
-        </Col> */}
       </Row>
-    </Layout1>
+    </>
   );
 }

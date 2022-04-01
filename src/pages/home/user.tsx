@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React, { useState } from "react";
 import { message, Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
@@ -8,12 +9,11 @@ import Table from "../../components/User/TableUser";
 import ModalUser from "../../components/User/ModalUser";
 import { UserActions } from "../../redux/reducers/User/user";
 
-import Layout1 from "../layout/layout";
 const User = () => {
   const dispatch = useAppDispatch();
   React.useEffect(() => {
     dispatch(UserActions.GET_LIST_REQUREST());
-  }, []);
+  }, [dispatch]);
   const { dataUser } = useAppSelector((state) => state.user);
   // BEGIN USER
   const [titleModalUser, setTitleModalUser] = useState("");
@@ -100,7 +100,7 @@ const User = () => {
   const role = localStorage.getItem("role");
   if (role === "admin" || role === "manager") {
     return (
-      <Layout1>
+      <>
         <Button type="primary" size="large" onClick={onOpenCreateUser}>
           Thêm nhân viên <PlusOutlined />
         </Button>
@@ -117,7 +117,7 @@ const User = () => {
           onSubmit={isCreateUser ? handleSubmit : handleUpdate}
           detailData={itemSeletedUser}
         />
-      </Layout1>
+      </>
     );
   } else {
     return <h1>Page not found.</h1>;

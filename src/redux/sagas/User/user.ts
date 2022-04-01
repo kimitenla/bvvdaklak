@@ -24,9 +24,10 @@ function* handleGetist(action: IAction) {
 }
 function* handlegetListOnRoom(action: IAction) {
   try {
-    const { data } = action.payload;
-    const res: AxiosResponse = yield call(GetOnRoom, data);
-    if (res.data) yield put(UserActions.GET_LIST_ON_ROOM_SUCCESS(data));
+    const room = action.payload;
+    const res: AxiosResponse = yield call(GetOnRoom, room);
+
+    if (res.data) yield put(UserActions.GET_LIST_ON_ROOM_SUCCESS(res.data));
   } catch (e) {
     yield put(UserActions.GET_LIST_ON_ROOM_FAILED());
   }

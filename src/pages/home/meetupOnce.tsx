@@ -1,4 +1,3 @@
-import Layout1 from "../layout/layout";
 import moment from "moment";
 import { DatePicker, message, Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
@@ -7,7 +6,7 @@ import Table from "../../components/Home/Table";
 import Modal from "../../components/Home/Modal";
 import "moment/locale/vi";
 import "./meetupOnce.css";
-import { HomeActions } from "../../redux/reducers/home";
+import { HomeActions } from "../../redux/reducers/Meetups/home";
 import { useAppDispatch, useAppSelector } from "../../utils/hook";
 moment.locale("vi");
 
@@ -28,7 +27,7 @@ const MeetupOnce = () => {
         }
       )
     );
-  }, [today]);
+  }, [dispatch, today]);
 
   function onChange(date: any, dateString: any) {
     console.log(date, dateString);
@@ -112,7 +111,7 @@ const MeetupOnce = () => {
   const role = localStorage.getItem("role");
   if (role === "admin" || role === "manager") {
     return (
-      <Layout1>
+      <>
         <div>
           <DatePicker onChange={onChange} defaultValue={moment()} />
         </div>
@@ -135,11 +134,11 @@ const MeetupOnce = () => {
           onSubmit={isCreate ? handleSubmit : handleUpdate}
           detailData={itemSeleted}
         />
-      </Layout1>
+      </>
     );
   } else {
     return (
-      <Layout1>
+      <>
         <div>
           <DatePicker onChange={onChange} />
         </div>
@@ -158,7 +157,7 @@ const MeetupOnce = () => {
           onSubmit={isCreate ? handleSubmit : handleUpdate}
           detailData={itemSeleted}
         />
-      </Layout1>
+      </>
     );
   }
 };
