@@ -14,6 +14,7 @@ function* handleLogin(action: IAction) {
       localStorage.setItem("role", res.data.role);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("name", res.data.name);
+      console.log(res.data, "ádbashjdbas");
 
       yield put(LoginActions.LOGIN_SUCCESS(action.payload.data));
 

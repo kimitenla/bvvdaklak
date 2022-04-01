@@ -61,10 +61,16 @@ const ScoreFind = () => {
       render: (LeadPoint: Number) => LeadPoint,
     },
     {
-      title: "Time",
+      title: "Cập nhật lần cuối",
       dataIndex: "Time",
       key: "Time",
-      render: (Time: Date) => moment(Time).startOf("day").fromNow(),
+      render: (Time: Date) => moment(Time).subtract(10, "days").calendar(),
+    },
+    {
+      title: "Phòng",
+      dataIndex: "Room",
+      key: "Room",
+      render: (Room: String) => Room,
     },
   ];
   return (
